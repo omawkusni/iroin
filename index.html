@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iroin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <div class="headerInner">
+      <h2 class="logo">iroin</h2>
+    </div>
+  </header>
+  <main>
+    <div class="mainInner">
+      <article>
+        <section>
+          <h2 class="midashi">このサイトでできること</h2>
+          <p>文章を母音ごとに色わけして四角形で表示します。韻を踏んでいる所がよくわかります</p>
+        </section>
+        <section>
+          <h2 class="midashi">ルール</h2>
+          <p>概要：基本ひらがなで入力して、子音として扱いたい場合だけカナ・ローマ字入力してね</p>
+          <ol>
+            <li>ひらがなで母音を判断</li>
+            <li>漢字は非対応</li>
+            <li>カタカナ・ローマ字では母音は判断されず、前の言葉にくっつく</li>
+            <li>長音符（ー、～）は一つ前の母音と同じ母音で一つの言葉になる</li>
+            <li>スペースは空白になるが、半角スペースは全角スペースになる</li>
+            <li>1行最大約16文字、最大行数13行</li>
+          </ol>
+        </section>
+        <section>
+          <h2 class="midashi">母音の色を指定してね</h2>
+          <div id = irogyou>
+            <label>あ行：<input type="color" id="colorA" name="boincolor"
+              value="#eC0941"></label>
+            <label for="body">い行：<input type="color" id="colorI" name="boincolor"
+              value="#01c10e"></label>
+            <label for="body">う行：<input type="color" id="colorU" name="boincolor"
+              value="#9e00d1"></label>
+            <label for="body">え行：<input type="color" id="colorE" name="boincolor"
+              value="#fb6a09"></label>
+            <label for="body">お行：<input type="color" id="colorO" name="boincolor"
+              value="#065fcb"></label>
+            <label for="body">ｽﾍﾟｰｽ：<input type="color" id="colorO" name="boincolor"
+              value="#ffffff"></label>
+          </div>
+        </section>
+        <section>
+          <h2 class="midashi">変換したい文章を入力してね</h2>
+          <textarea id="textid" ></textarea>
+          <div id="btndiv">
+            <button id="buttonid">変換</button>
+          </div>
+        </section>
+        <section>
+          <canvas id="canvasid" width="1000" height="1000">
+            すいません。お使いの環境では表示できません。
+          </canvas>
+       </section>
+        <script src="script.js"></script>
+      </article>
+    </div>
+  </main>
+  <footer>
+    <div class="footerInner">
+      <small>&copy;omawksni</small>
+    </div>
+  </footer> 
+</body>
+</html>

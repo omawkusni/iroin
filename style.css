@@ -1,0 +1,84 @@
+header{
+  background: #333333;
+}
+
+.headerInner{
+  color: #ffffff;
+  height: 40px;
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body{
+  margin: 0;
+  font-family: "メイリオ","ヒラギノ角ゴシック";
+}
+
+.mainInner{
+  max-width: 650px;
+  margin: auto;
+  padding: 0px 0px;
+}
+
+
+footer{
+  background: #333333;
+}
+
+.footerInner{
+  color: #ffffff;
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px;
+}
+
+
+textarea {
+  width:100%;
+  height:200px;
+  font-size: larger; /*chromeで文字が小さく見えるので*/
+}
+
+
+.midashi {
+  padding: 30px 0px 0px 0px;
+  border-bottom: 3px solid #333333; 
+  color: #333333;
+ }
+
+#btndiv{
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 10px 30px 10px;
+}
+
+#buttonid{
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background: #3d348b;
+    box-shadow: 0 5px #2c0b8e;
+  }
+  #buttonid:hover {
+    box-shadow: 0 3px #2c0b8e;
+    top: 1px;
+  }
+  #buttonid:active {
+    box-shadow: 0 0 #2c0b8e;
+    top: 5px;
+  }
+  #buttonid:active {
+    background: skyblue;
+    color: #fff;
+}
