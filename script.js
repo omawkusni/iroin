@@ -1,7 +1,8 @@
 'use strict';
 const ConversionButton = document.getElementById('buttonid');
 const colorElement = document.getElementsByName('boincolor');
-const canvas = document.getElementById('canvasid');
+const divcanvasElement = document.getElementById('divcanvasid');
+
 const textElement = document.getElementById('textid')
 
 const arrByBoin = [
@@ -18,14 +19,23 @@ ConversionButton.onclick = () => {
   // テキストが空の時は処理を終了する
   if (textElement.length === 0) { return; }
   // キャンバスに未対応の場合
-  if (!canvas.getContext) {
-    alert("すいません。表示ができません。" )
-    return;
-  }
+
   //テキストを1文字づつ配列にいれる
   const arrText = textElement.value.split('');
+  //キャンバスの作成
+  if( document.getElementById("canvasid") != null ){
+    document.getElementById("canvasid").remove();
+  }
+
+  const newCanvas = document.createElement("canvas");
+  newCanvas.setAttribute("width", "1000");
+  newCanvas.setAttribute("height", "1000");
+  newCanvas.setAttribute("id", "canvasid");
+  divcanvasElement.appendChild(newCanvas);
+  
   //キャンバスを設定
-  const ctx = canvas.getContext('2d');
+  const canvasElement = document.getElementById('canvasid');
+  const ctx = canvasElement.getContext('2d');
   ctx.clearRect(0, 0, 1000, 1000)//描画をクリア
   ctx.font = 'bold 10pt 游明朝';
   let recX = 0
