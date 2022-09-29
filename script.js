@@ -72,47 +72,44 @@ ConversionButton.onclick = () => {
 
 
 /**
- * 文を音節ごとにわけて、音節の母音と文字幅も一緒にMapに入れる
+ * 文を音節ごとにわけてMAPで返す。音節の主韻と音節幅も一緒にMapに入れる
+ * 主韻は造語です。音節の中で母音を取る文字です。
+ * ex.「きゃ」の場合「ゃ」の”あ”が母音となるので主韻として「ゃ」をセット
  * @param {Array} arrtext /文を一字づつに分けた配列
- * @returns {}　/key：追加順番号 value:{moji:音節,shuin:音節の主韻,haba:音節の幅})
+ * @returns {}　/key：追加順番号 value：{moji：音節,shuin：音節の主韻,haba：音節の幅})
  */
-function makeOnsetsuMap(arrtext) {
-  let mojibuf //仮音節変数
-  let shuinbuf //仮母音変数
-  let cnt = 0 //Mapにセットした回数カウント用 Mapのindex
-
+ function makeOnsetsuMap(arrtext) {
+  let bufMoji = ''//仮音節変数
+  let bufShuin = ''//仮主韻変数
+  let cntMapSet = 0 //Mapにセットした回数をカウントする Mapのindexにする
   const mymap = new Map()
 
   arrtext.forEach((str, index) => {
-    //最初の要素なら仮音節変数、仮母音変数にstrを入れて次へ
-    if (index == 0){
-        mojibuf = str;
-        shuinbuf = str;
-        return;
+    switch (true) {
+      case index === 0 : //最初の要素
+      case  (/[ぁぃぅぇぉゃゅょゎゕゖ]/.test(str)) ://拗音
+        bufMoji = bufMoji + str; //前の文字にくっつける
+        bufShuin = str; // 主韻にする
+        break;
+      case (/っ/.test(str)) ://促音
+        bufMoji = bufMoji + str;
+        break;
+      case(/[ぁ-ゖ　 \n]/.test(str)) ://ひらがな(先のcaseでで拗音・促音をはじいている)、全角・半角スペース、改行
+        //変数に入っている言葉をMAPにセット
+        mymap.set (cntMapSet,{moji:bufMoji, shuin: bufShuin,haba:countHaba(bufMoji)});
+        cntMapSet++;
+        //現在の要素を変数にいれる
+        bufMoji = str;
+        bufShuin = str; //スペースと改行も主韻に入ってしまうが、問題ない
+        break;
+      default: //カタカナ・英語等
+        bufMoji = bufMoji + str;
+        break;  
     }
   
-    if (isYouon(str)) {
-        mojibuf = mojibuf + str
-        shuinbuf = str;
-    } else if (/っ/.test(str)) {
-        mojibuf = mojibuf + str
-    } else if ((/\n/).test(str)) {
-        mymap.set (cnt,{moji:mojibuf, shuin: shuinbuf,haba:countHaba(mojibuf)})
-        mojibuf = str
-        shuinbuf = str
-        cnt++
-    } else if (isNotHiragana(str)) {
-        mojibuf = mojibuf + str
-    } else {
-        console.log(cnt)
-        mymap.set (cnt,{moji:mojibuf, shuin: shuinbuf,haba:countHaba(mojibuf)})
-        mojibuf = str
-        shuinbuf = str
-        cnt++
-    }
   //最終の要素ならMapに追加
-    if (index == arrtext.length - 1){
-        mymap.set (cnt,{moji:mojibuf, shuin: shuinbuf,haba:countHaba(mojibuf)})
+    if (index === arrtext.length - 1){
+        mymap.set (cntMapSet,{moji:bufMoji, shuin: bufShuin,haba:countHaba(bufMoji)})
     }
   })
   
