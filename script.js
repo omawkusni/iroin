@@ -118,29 +118,6 @@ ConversionButton.onclick = () => {
 
 
 
-
-/**
- * 対象文字がひらがな・空白(全角・半角)・長音符（ー、～）かどうか
- * @param {String} str 
- * @returns {Boolean}
- */
-function isNotHiragana(str){
-  str = (str==null)?"":str;
-  return !/[ぁ-ゖー～　 ]/.test(str); //"～"の後ろの文字は全角スペースと半角スペース
-}
-
-
-/**
- * 対象文字が拗音かどうか
- * @param {String} str 
- * @returns {Boolean}
- */
-function isYouon(str){
-  str = (str==null)?"":str;
-  return /[ぁぃぅぇぉゃゅょゎゕゖ]/.test(str);
-}
-
-
 /**
  * 全角半角を区別した文字幅を返す
  * @param {String} strs /数えたい文字列
