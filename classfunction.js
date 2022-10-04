@@ -1,3 +1,4 @@
+/**四角形のサイズを基準として、文字サイズや図形間の間隔を指定*/
 class CvsShape {
   #_recSize
   #_recSpaceX
@@ -57,8 +58,12 @@ function createCanvas(width,height) {
   return newCanvas
 }
 
-
-function maxMojisu(mapOnsetsu) {
+/**
+ * 1行での最大文字数(音節数)を計算
+ * @param {Map} mapOnsetsu Map音節/key：追加順番号 value：{moji：音節,shuin：音節の主韻,haba：音節の幅})
+ * @returns {Number}　/最大文字数
+ */
+function culcMaxMojisu(mapOnsetsu) {
   let max = 0
   let preMojiNo = 0
   mapOnsetsu.forEach((obj, key) => {
