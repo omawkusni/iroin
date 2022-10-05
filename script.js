@@ -37,12 +37,13 @@ ConversionButton.onclick = () => {
    * value:{moji:音節,shuin:音節の主韻,haba:音節の幅})
    */
   const mapOnsetsu = makeOnsetsuMap(arrText)
-  //文字数を確認してオーバーなら終了
-  const maxMojisu = culcMaxMojisu(mapOnsetsu);
-  if(maxMojisu>16){
-    alert(`${maxMojisu}文字の行があります。${maxMojisu-16}文字オーバーです`)
-    return;
-  }
+  const maxMojisu = 16
+  //文字数を確認してオーバーなら終了 関数おかしいので保留
+  //const maxMojisu = culcMaxMojisu(mapOnsetsu);
+  //if(maxMojisu>16){
+  //  alert(`${maxMojisu}文字の行があります。${maxMojisu-16}文字オーバーです`)
+  //  return;
+  //}
   //キャンバスを設定
   var ClassShape = new CvsShape(50);
   const arrByKaigyo = textElement.value.split('\n');
